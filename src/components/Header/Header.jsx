@@ -1,84 +1,138 @@
+/* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable no-unused-vars */
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import logo from "../../images/Bullean.png";
 import { Link } from "react-router-dom";
+import { darkThemeContext } from "../../context/darkTheme";
 function Header({ toggle, setToggle }) {
   const [raiscap, setRaiscap] = useState(false);
+  // const [theme, setTheme] = useState("light");
+  const { theme, setTheme } = useContext(darkThemeContext);
+
+  useEffect(() => {
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [theme]);
+
+  const handleTheme = () => {
+    setTheme(theme === "dark" ? "light" : "dark");
+  };
+
   return (
-    <div className="w-full">
-      <div className="absolute w-[95vw] z-20 rounded-lg mx-4 p-4 sm:px-4 bg-[#10194D] text-[10px] sm:text-[16px] flex justify-between items-center">
-        <img className="w-[90px] sm:w-fit pl-8" src={logo} />
+    <div className="w-full fixed z-50">
+      <div className="absolute w-[95vw] z-20 rounded-lg mx-4 p-4 sm:px-4 bg-[#efefef] dark:bg-[#10194D] text-[10px] sm:text-[16px] flex justify-between items-center">
+        <img
+          className="w-[90px] sm:w-fit pl-8"
+          src={logo}
+          onClick={handleTheme}
+        />
         <Link to="/">
-          <p className="cursor-pointer">Curated for you</p>
+          <p className="cursor-pointer dark:text-white text-black">
+            Curated for you
+          </p>
         </Link>
         <Link to="/service">
-          <p className=" cursor-pointer">Services</p>
+          <p className=" dark:text-white text-black cursor-pointer">Services</p>
         </Link>
-        <p onClick={() => setRaiscap(true)} className="cursor-pointer">
+        <p
+          onClick={() => setRaiscap(true)}
+          className="cursor-pointer dark:text-white text-black"
+        >
           Raise Capital / Sell Business
         </p>
         <Link to="/investor">
-          <p className="cursor-pointer">Interested in investing</p>
+          <p className="cursor-pointer dark:text-white text-black ">
+            Interested in investing
+          </p>
         </Link>
-        <p className="pr-8 cursor-pointer">Contact Us</p>
+        <Link to="/support">
+          <p className="pr-8 cursor-pointer dark:text-white text-black ">
+            Contact Us
+          </p>
+        </Link>
       </div>
 
       {toggle ? (
         <div className="absolute top-0 backdrop-blur-sm z-20 w-full h-[100vh] mb-12 flex justify-center items-center">
-          <div className="flex flex-col items-center p-6 bg-slate-800 rounded-xl">
-            <p className="text-[26px] ranade mb-8">Subscription</p>
+          <div className="flex flex-col items-center p-6 bg-white dark:bg-slate-800 rounded-xl">
+            <p className="text-[26px] ranade mb-8  dark:text-white text-black">
+              Subscription
+            </p>
             <div className="flex justify-evenly items-center">
               <div>
-                <p className="mx-6 text-[13px]">Company name</p>
+                <p className="mx-6 text-[13px]  dark:text-white text-black">
+                  Company name
+                </p>
                 <input
-                  className="text-black px-3 py-[6px] w-[472px] mx-6 mb-3 rounded-md"
+                  className="bg-[#c1bfbf] dark:bg-white text-black px-3 py-[6px] w-[472px] mx-6 mb-3 rounded-md"
                   type="text"
                 />
-                <p className="mx-6 text-[13px]">Concerned Person</p>
+                <p className="mx-6 text-[13px]  dark:text-white text-black">
+                  Concerned Person
+                </p>
                 <input
-                  className="text-black px-3 py-[6px] w-[472px] mx-6 mb-3 rounded-md"
+                  className="bg-[#c1bfbf] dark:bg-white text-black px-3 py-[6px] w-[472px] mx-6 mb-3 rounded-md"
                   type="text"
                 />
-                <p className="mx-6 text-[13px]">Designation</p>
+                <p className="mx-6 text-[13px]  dark:text-white text-black">
+                  Designation
+                </p>
                 <input
-                  className="text-black px-3 py-[6px] w-[472px] mx-6 mb-3 rounded-md"
+                  className="bg-[#c1bfbf] dark:bg-white text-black px-3 py-[6px] w-[472px] mx-6 mb-3 rounded-md"
                   type="text"
                 />
-                <p className="mx-6 text-[13px]">Phone</p>
+                <p className="mx-6 text-[13px]  dark:text-white text-black">
+                  Phone
+                </p>
                 <input
-                  className="text-black px-3 py-[6px] w-[472px] mx-6 mb-3 rounded-md"
+                  className="bg-[#c1bfbf] dark:bg-white text-black px-3 py-[6px] w-[472px] mx-6 mb-3 rounded-md"
                   type="text"
                 />
-                <p className="mx-6 text-[13px]">Email</p>
+                <p className="mx-6 text-[13px]  dark:text-white text-black">
+                  Email
+                </p>
                 <input
-                  className="text-black px-3 py-[6px] w-[472px] mx-6 mb-3 rounded-md"
+                  className="bg-[#c1bfbf] dark:bg-white text-black px-3 py-[6px] w-[472px] mx-6 mb-3 rounded-md"
                   type="text"
                 />
               </div>
               <div>
-                <p className="mx-6 text-[13px]">Industry</p>
+                <p className="mx-6 text-[13px]  dark:text-white text-black">
+                  Industry
+                </p>
                 <input
-                  className="text-black px-3 py-[6px] w-[472px] mx-6 mb-3 rounded-md"
+                  className="bg-[#c1bfbf] dark:bg-white text-black px-3 py-[6px] w-[472px] mx-6 mb-3 rounded-md"
                   type="text"
                 />
-                <p className="mx-6 text-[13px]">Sub Industry</p>
+                <p className="mx-6 text-[13px]  dark:text-white text-black">
+                  Sub Industry
+                </p>
                 <input
-                  className="text-black px-3 py-[6px] w-[472px] mx-6 mb-3 rounded-md"
+                  className="bg-[#c1bfbf] dark:bg-white text-black px-3 py-[6px] w-[472px] mx-6 mb-3 rounded-md"
                   type="text"
                 />
-                <p className="mx-6 text-[13px]">Sub Sub Industry</p>
+                <p className="mx-6 text-[13px]  dark:text-white text-black">
+                  Sub Sub Industry
+                </p>
                 <input
-                  className="text-black px-3 py-[6px] w-[472px] mx-6 mb-3 rounded-md"
+                  className="bg-[#c1bfbf] dark:bg-white text-black px-3 py-[6px] w-[472px] mx-6 mb-3 rounded-md"
                   type="text"
                 />
-                <p className="mx-6 text-[13px]">Description</p>
+                <p className="mx-6 text-[13px]  dark:text-white text-black">
+                  Description
+                </p>
                 <input
-                  className="text-black px-3 py-[6px] w-[472px] mx-6 mb-3 rounded-md"
+                  className="bg-[#c1bfbf] dark:bg-white text-black px-3 py-[6px] w-[472px] mx-6 mb-3 rounded-md"
                   type="text"
                 />
-                <p className="mx-6 text-[13px]">Revenue Range / Arr</p>
+                <p className="mx-6 text-[13px]  dark:text-white text-black">
+                  Revenue Range / Arr
+                </p>
                 <input
-                  className="text-black px-3 py-[6px] w-[472px] mx-6 mb-3 rounded-md"
+                  className="bg-[#c1bfbf] dark:bg-white text-black px-3 py-[6px] w-[472px] mx-6 mb-3 rounded-md"
                   type="text"
                 />
               </div>
@@ -95,42 +149,46 @@ function Header({ toggle, setToggle }) {
 
       {raiscap ? (
         <div className="absolute top-0 backdrop-blur-sm z-20 w-full h-[100vh] mb-12 flex justify-center items-center">
-          <div className="flex flex-col items-center p-6 bg-slate-800 rounded-xl">
-            <p className="text-[26px] ranade mb-8">
+          <div className="flex flex-col items-center p-6 bg-white dark:bg-slate-800 rounded-xl">
+            <p className="text-[26px] ranade mb-8 text-black dark:text-white">
               Raise Capital / Sell Business
             </p>
             <div className="text-[16px]">
               <div className="flex justify-between items-center">
                 <div className="mx-6">
-                  <p className="">First Name</p>
+                  <p className="text-black dark:text-white">First Name</p>
                   <input
-                    className="px-3 text-black py-[6px] rounded-lg"
+                    className="px-3  bg-[#c1bfbf] dark:bg-white text-black py-[6px] rounded-lg"
                     type="text"
                   />
                 </div>
                 <div className="mx-6">
-                  <p className="">Last Name</p>
+                  <p className="text-black dark:text-white">Last Name</p>
                   <input
-                    className="px-3 text-black py-[6px] rounded-lg"
+                    className="px-3 text-black py-[6px] rounded-lg bg-[#c1bfbf] dark:bg-white"
                     type="text"
                   />
                 </div>
               </div>
-              <p className="mt-6 mx-6">Company Name</p>
+              <p className="mt-6 mx-6 text-black dark:text-white">
+                Company Name
+              </p>
               <input
-                className="px-3 text-black py-[6px] w-[550px] mx-6   rounded-lg"
+                className="px-3 text-black py-[6px] w-[550px] mx-6   rounded-lg bg-[#c1bfbf] dark:bg-white"
                 type={"text"}
               />
               <br />
-              <p className="mt-6 mx-6">Email Address</p>
+              <p className="mt-6 mx-6 text-black dark:text-white">
+                Email Address
+              </p>
               <input
-                className="px-3 text-black py-[6px] w-[550px] mx-6 rounded-lg"
+                className="px-3 text-black py-[6px] w-[550px] mx-6 rounded-lg bg-[#c1bfbf] dark:bg-white"
                 type={"text"}
               />
               <br />
-              <p className="mt-6 mx-6">Password</p>
+              <p className="mt-6 mx-6 text-black dark:text-white">Password</p>
               <input
-                className="px-3 text-black py-[6px] w-[550px] mx-6 rounded-lg"
+                className="bg-[#c1bfbf] dark:bg-white px-3 text-black py-[6px] w-[550px] mx-6 rounded-lg"
                 type={"text"}
               />
               <br />
